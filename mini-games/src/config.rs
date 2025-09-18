@@ -15,8 +15,8 @@ pub struct Config {
 impl Config {
     pub fn default() -> Self {
         Self {
-            num_rows: 18,
-            num_cols: 18,
+            num_rows: 27,
+            num_cols: 28,
             snake_init_size: 8,
             color_bg: DARKGRAY,
             color_grid: WHITE,

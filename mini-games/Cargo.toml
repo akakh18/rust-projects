@@ -15,3 +15,6 @@ winres = "0.1"
 name = "snake_game"
 path = "src/main.rs"
 windows-subsystem = "windows"
+
+[package.metadata.assets]
+folder = "assets"

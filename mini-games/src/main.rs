@@ -1,39 +1,52 @@
-use macroquad::prelude::*;
+use std::pin::Pin;
+use std::future::Future;
 
+mod menu;
+mod games;
 mod direction;
 mod snake;
 mod world;
 mod config;
 mod utils;
+mod game;
 
-use direction::Direction;
-use world::World;
-use crate::snake::Snake;
+use macroquad::prelude::*;
+use crate::menu::{GameButton, GameMenu};
+use crate::games::SnakeGame;
+use crate::game::Game;
 
 #[macroquad::main("Snake Game")]
 async fn main() {
-    let snake = Snake::new();
-    let direction = Direction::new();
-    let mut world = World::new(snake, direction);
+    let snake_game = SnakeGame {};
 
-    let mut frame_count: u64 = 0;
-    let mut elapsed_time: f32 = 0.0;
-    let move_interval: f32 = 0.2;
+    let buttons = vec![
+        GameButton::new(
+            screen_width() * 0.3,
+            screen_height() * 0.08,
+            screen_width() / 2.0 - screen_width() * 0.3 / 2.0,
+            screen_height() / 2.0 - screen_height() * 0.05,
+            DARKBLUE,
+            BLUE,
+            "SNAKE".to_string(),
+            Some(&snake_game),
+        )
+    ];
+
+    let menu = GameMenu::new(buttons, "assets/background.png").await;
+
+    let mut running_game: Option<Pin<Box<dyn Future<Output = ()>>>> = None;
 
     loop {
         clear_background(WHITE);
 
-        elapsed_time += get_frame_time();
-        world.update_direction();
-
-        if elapsed_time >= move_interval {
-            world.update();
-            elapsed_time = 0.0;
+        if let Some(game_future) = &mut running_game {
+            game_future.as_mut().await;
+            running_game = None;
+        } else {
+            if let Some(game_future) = menu.draw() {
+                running_game = Some(game_future);
+            }
         }
-
-        world.draw(frame_count);
-
-        frame_count += 1;
 
         next_frame().await;
     }
