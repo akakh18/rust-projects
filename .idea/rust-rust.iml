@@ -7,10 +7,12 @@
       <sourceFolder url="file://$MODULE_DIR$/deck/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/mini-games/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/media/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/cli_projects/todo/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/bank/target" />
       <excludeFolder url="file://$MODULE_DIR$/deck/target" />
       <excludeFolder url="file://$MODULE_DIR$/mini-games/target" />
       <excludeFolder url="file://$MODULE_DIR$/media/target" />
+      <excludeFolder url="file://$MODULE_DIR$/cli_projects/todo/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

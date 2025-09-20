@@ -1,0 +1,1 @@
+C:\Users\Avto\Downloads\rust-rust\rust-rust\cli_projects\todo\target\release\todo.exe: C:\Users\Avto\Downloads\rust-rust\rust-rust\cli_projects\todo\src\main.rs C:\Users\Avto\Downloads\rust-rust\rust-rust\cli_projects\todo\src\manager.rs C:\Users\Avto\Downloads\rust-rust\rust-rust\cli_projects\todo\src\task.rs
