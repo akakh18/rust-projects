@@ -42,6 +42,22 @@ fn main() {
                 task.show();
             }
         }
+        "resolve" => {
+            if args.len() < 4 {
+                println!("Usage: todo resolve <task> <line_number>");
+            } else {
+                let task = Task::new(&args[2]);
+                let line_number: usize = match args[3].parse() {
+                    Ok(n) => n,
+                    Err(_) => {
+                        println!("Invalid line number: {}", args[3]);
+                        return;
+                    }
+                };
+                task.resolve(line_number);
+                println!("Marked line {} as resolved in task '{}'", line_number, task.name);
+            }
+        }
         _ => {
             println!("Unknown command: {}", args[1]);
         }
